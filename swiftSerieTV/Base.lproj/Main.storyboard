@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZuW-SM-awN">
-                            <size key="itemSize" width="100" height="100"/>
+                            <size key="itemSize" width="366" height="105"/>
                             <size key="estimatedItemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -49,14 +49,14 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="moviesCell" id="hYA-Kr-Q5t" customClass="MyCollectionViewCell" customModule="swiftSerieTV" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="90" height="90"/>
+                                <rect key="frame" x="24" y="50" width="366" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="l2r-ci-tmm">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="366" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="name" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AN-0g-4uF">
-                                            <rect key="frame" x="43" y="85" width="43" height="21"/>
+                                            <rect key="frame" x="24" y="35" width="218" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -65,7 +65,7 @@
                                     </subviews>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <size key="customSize" width="90" height="90"/>
+                                <size key="customSize" width="366" height="105"/>
                                 <connections>
                                     <outlet property="name" destination="9AN-0g-4uF" id="x4f-5h-42z"/>
                                 </connections>
@@ -90,7 +90,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewx-g2-HuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-61" y="-678"/>
+            <point key="canvasLocation" x="-62.318840579710148" y="-678.34821428571422"/>
         </scene>
     </scenes>
     <resources>
