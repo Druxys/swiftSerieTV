@@ -24,10 +24,6 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="RRH-dD-AHB"/>
                             </scrollView>
                         </subviews>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="swiftSerieTV" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -95,7 +91,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewx-g2-HuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-61" y="-678"/>
-            <point key="canvasLocation" x="18.840579710144929" y="97.767857142857139"/>
         </scene>
     </scenes>
     <resources>
