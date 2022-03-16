@@ -6,12 +6,7 @@
 //
 
 import UIKit
-class Serie{
-    var name : String
-    init(name : String){
-        self.name = name
-    }
-}
+
 
 class SerieDetailsViewController : UIViewController{
     @IBOutlet weak var name: UILabel!
@@ -21,10 +16,6 @@ class SerieDetailsViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad();
        // name.text = serie!.name
-        self.tabSeries.append(Serie(name: "Test"))
-        self.tabSeries.append(Serie(name: "Test2"))
-        self.tabSeries.append(Serie(name: "Test3"))
-        self.tabSeries.append(Serie(name: "Test4"))
-        self.tabSeries.append(Serie(name: "Test5"))
+
     }
 }
