@@ -37,23 +37,6 @@ class SerieViewController: UIViewController {
                     print(i.name)
                 }
             }
-        
-        
-        /*let task = URLSession.shared.dataTask(with: url){
-            data, response, error in
-            let decoder = JSONDecoder()
-            
-            if let data = data{
-                do{
-                    let tasks = try decoder.decode([pagination].self, from: data)
-                    tasks.forEach{ i in
-                        print(i.page)
-                    }
-                }catch{
-                    print(error)
-                }
-            }
-        }*/
             task.resume()
     }
     

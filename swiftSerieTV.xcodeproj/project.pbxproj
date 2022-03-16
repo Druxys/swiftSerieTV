@@ -19,6 +19,7 @@
 		93817BCD27E0D64500209340 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93817BCC27E0D64500209340 /* CollectionViewController.swift */; };
 		93B121E827E1EA2C00C538DE /* SerieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B121E727E1EA2C00C538DE /* SerieDetailsViewController.swift */; };
 		93B121EA27E1FAB900C538DE /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B121E927E1FAB900C538DE /* Serie.swift */; };
+		D71C393927E1FEF800411CA2 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C393827E1FEF800411CA2 /* Pagination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		93817BCC27E0D64500209340 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		93B121E727E1EA2C00C538DE /* SerieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieDetailsViewController.swift; sourceTree = "<group>"; };
 		93B121E927E1FAB900C538DE /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
+		D71C393827E1FEF800411CA2 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				93817BA327E0AFEB00209340 /* Assets.xcassets */,
 				93817BA527E0AFEB00209340 /* LaunchScreen.storyboard */,
 				93817BA827E0AFEB00209340 /* Info.plist */,
+				D71C393827E1FEF800411CA2 /* Pagination.swift */,
 			);
 			path = swiftSerieTV;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				93817BCD27E0D64500209340 /* CollectionViewController.swift in Sources */,
 				93817B9F27E0AFEA00209340 /* ViewController.swift in Sources */,
 				93B121EA27E1FAB900C538DE /* Serie.swift in Sources */,
+				D71C393927E1FEF800411CA2 /* Pagination.swift in Sources */,
 				93817B9B27E0AFEA00209340 /* AppDelegate.swift in Sources */,
 				93B121E827E1EA2C00C538DE /* SerieDetailsViewController.swift in Sources */,
 				93817B9D27E0AFEA00209340 /* SceneDelegate.swift in Sources */,
