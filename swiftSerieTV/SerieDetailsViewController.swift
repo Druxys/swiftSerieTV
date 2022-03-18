@@ -45,8 +45,7 @@ class SerieDetailsViewController : UIViewController{
                 let detailSerie: Serie = try! JSONDecoder().decode(Serie.self, from: JsonData)
                 self.res = detailSerie
                 DispatchQueue.main.async() {
-                                              
-                                              self.collectionView.reloadData();
+                    //self.collectionView.reloadData();
                                           }
                 }
     
