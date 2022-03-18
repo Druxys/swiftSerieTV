@@ -49,35 +49,24 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
     
     var filteredSeries : [Serie] = [];
     
+    var resSerie:[Serie]?;
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //searchBar = UIStoryboard(name: "Main", bundle: nil).value(forKey: "searchbar") as! UISearchBar
         getSeries()
        // self.searchBar.delegate = self
-       // navigationItem.searchController = searchController
     }
     
-   /* func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController .searchBar.text else {
-            return
-        }
-        print(text)
-    }*/
-    
-   /* func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredSeries = searchText.isEmpty ? tabSeries : tabSeries.filter { (series: Serie) -> Bool in
-            return series.name!.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        }
-        myCollection.reloadData()
-    }*/
-    
+  
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredSeries = tabSeries
         }else {
             fetchSearchResult(search: searchText)
         }
-        myCollection.reloadData()
+        myCollection?.reloadData()
     }
     
     
@@ -108,11 +97,11 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
                               for result in self.res!.results! {
                                   print(result)
                                   if result.backdrop_path != nil {
-                                      res.append(Serie( backdrop_path: result.id, first_air_date: result.backdrop_path, id: result.first_air_date , genre_ids: result.name, name: result.popularity, origin_country: result.poster_path, original_language: result.vote_average, original_name: result.vote_count))
+                                      res.append(Serie( backdrop_path: result.backdrop_path, first_air_date: result.first_air_date, id: result.id , genre_ids: result.genre_ids, name: result.name, origin_country: result.origin_country, original_language: result.original_language, original_name: result.original_name, overview: result.overview, popularity: result.popularity, poster_path: result.poster_path, vote_average: result.vote_average, vote_count: result.vote_count))
                                   }
                               }
                               self.filteredSeries = res
-                              self.myCollection.reloadData()
+                              self.myCollection?.reloadData()
                           }
                       }else{
                         print("no data")
@@ -225,9 +214,9 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
             let JsonData = jsonDataString.data(using: .utf8)!
             
             let pagination: Pagination = try! JSONDecoder().decode(Pagination.self, from: JsonData)
-            self.res = pagination.results
+            self.resSerie = pagination.results
             DispatchQueue.main.async() {
-                for result in self.res! {
+                for result in self.resSerie! {
                     self.tabSeries.append(Serie(backdrop_path: result.backdrop_path, first_air_date: result.first_air_date, id: result.id, genre_ids: result.genre_ids,  name: result.name, origin_country: result.origin_country, original_language: result.original_language, original_name: result.original_name, overview: result.overview,
                                                 popularity: result.popularity, poster_path: result.poster_path, vote_average: result.vote_average, vote_count: result.vote_count))
                 }
