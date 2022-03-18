@@ -102,6 +102,8 @@ class SerieDetailsViewController : UIViewController{
                     self.imgSerie.dl(from: "https://image.tmdb.org/t/p/w500" + self.res!.backdrop_path!)
                     self.imgPoster.dl(from: "https://image.tmdb.org/t/p/w500" + self.res!.poster_path!)
                     /*self.nameSerie.append(Serie(backdrop_path: self.res?.backdrop_path, first_air_date: self.res?.first_air_date, id: self.res?.id, genre_ids: self.res?.genre_ids, name: self.res?.name, origin_country: self.res?.origin_country, original_language: self.res?.original_language, original_name: self.res?.original_name, overview: self.res?.overview, popularity: self.res?.popularity, poster_path: self.res?.poster_path, vote_average: self.res?.vote_average, vote_count: self.res?.vote_count))*/
+                    //self.collectionView.reloadData();
+                                          }
                 }
                 self.nameSerie.reloadInputViews()
             }
