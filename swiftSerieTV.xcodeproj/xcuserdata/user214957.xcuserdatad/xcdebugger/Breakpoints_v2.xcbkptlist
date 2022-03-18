@@ -30,8 +30,8 @@
             filePath = "swiftSerieTV/SerieDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "getSeries(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "swiftSerieTV/SerieDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "getSeries(id:)"
             landmarkType = "7">
          </BreakpointContent>

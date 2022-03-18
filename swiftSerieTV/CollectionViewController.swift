@@ -48,9 +48,6 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
     var tabSeries : [Serie] = [];
     
     var filteredSeries : [Serie] = [];
-
-    
-    var res:[Serie]?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +108,7 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
                               for result in self.res!.results! {
                                   print(result)
                                   if result.backdrop_path != nil {
-                                      res.append(Serie(backdrop_path: result.id, first_air_date: result.backdrop_path, id: result.first_air_date , genre_ids: result.name, name: result.popularity, origin_country: result.poster_path, original_lanÂguage: result.vote_average, original_name: result.vote_count))
+                                      res.append(Serie( backdrop_path: result.id, first_air_date: result.backdrop_path, id: result.first_air_date , genre_ids: result.name, name: result.popularity, origin_country: result.poster_path, original_language: result.vote_average, original_name: result.vote_count))
                                   }
                               }
                               self.filteredSeries = res
