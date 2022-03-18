@@ -34,14 +34,14 @@ extension UIImageView {
         }.resume()
     }
 }
-class CollectionViewController: UICollectionViewController,  UISearchBarDelegate {
+class CollectionViewController:  UIViewController ,UICollectionViewDataSource, UISearchBarDelegate{
     
     //var searchBar: UISearchBar!
-    var res: Result?;
+    var res: Result?
 
     var searchBar: UISearchBar!
     //@IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var myCollection: UICollectionView!
+    @IBOutlet weak var myCollection: UICollectionView!
     
    // let searchController = UISearchController()
     
@@ -56,7 +56,8 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
         super.viewDidLoad()
         //searchBar = UIStoryboard(name: "Main", bundle: nil).value(forKey: "searchbar") as! UISearchBar
         getSeries()
-       // self.searchBar.delegate = self
+        myCollection.dataSource = self
+        searchBar.delegate = self
     }
     
   
@@ -66,7 +67,7 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
         }else {
             fetchSearchResult(search: searchText)
         }
-        myCollection?.reloadData()
+        myCollection.reloadData()
     }
     
     
@@ -101,7 +102,7 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
                                   }
                               }
                               self.filteredSeries = res
-                              self.myCollection?.reloadData()
+                              self.myCollection.reloadData()
                           }
                       }else{
                         print("no data")
@@ -131,17 +132,17 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
 
         }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     // obligatoire à redéfinir
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filteredSeries.count
     }
     
     // peupler les cellules de tables
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviesCell", for: indexPath) as! MyCollectionViewCell
         cell.name?.text = filteredSeries[indexPath.row].name
         cell.imageView?.dl(from: "https://image.tmdb.org/t/p/w500"+filteredSeries[indexPath.row].backdrop_path!)
@@ -156,7 +157,7 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
     }*/
     
     // gérer le click sur une cellule
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var serieView : SerieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "serieView")
         serieView.serie = filteredSeries[indexPath.row]
         // show(studentView, sender: self)
@@ -164,12 +165,11 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
         
     }
     
-    override func collectionView(
+     func collectionView(
       _ collectionView: UICollectionView,
       viewForSupplementaryElementOfKind kind: String,
       at indexPath: IndexPath
     ) -> UICollectionReusableView {
-        print(kind)
       switch kind {
       // 1
       case UICollectionView.elementKindSectionHeader:
@@ -216,33 +216,25 @@ class CollectionViewController: UICollectionViewController,  UISearchBarDelegate
             let pagination: Pagination = try! JSONDecoder().decode(Pagination.self, from: JsonData)
             self.resSerie = pagination.results
             DispatchQueue.main.async() {
-                for result in self.resSerie! {
+                self.res = try! JSONDecoder().decode(Result.self, from: data)
+                var res: [Serie] = []
+                for result in self.res!.results! {
                     self.tabSeries.append(Serie(backdrop_path: result.backdrop_path, first_air_date: result.first_air_date, id: result.id, genre_ids: result.genre_ids,  name: result.name, origin_country: result.origin_country, original_language: result.original_language, original_name: result.original_name, overview: result.overview,
                                                 popularity: result.popularity, poster_path: result.poster_path, vote_average: result.vote_average, vote_count: result.vote_count))
                 }
-                self.filteredSeries = self.tabSeries
-                self.collectionView.reloadData();
+                self.filteredSeries = res
+                self.collectionView.reloadData()
             }
         }
-        
         task.resume()
-        
-        
-        
     }
-    
-    
-    
-    
 }
 
 class MyHeader : UICollectionReusableView{
     @IBOutlet weak var searchBar: UISearchBar!
 }
 
-
 class MyCollectionViewCell : UICollectionViewCell{
-    
     @IBOutlet weak var mainBackground: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var imageView: UIImageView!
