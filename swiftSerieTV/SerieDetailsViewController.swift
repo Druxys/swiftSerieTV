@@ -7,26 +7,6 @@
 
 import UIKit
 
-extension UIImageView {
-
-    func dl(from urlString: String){
-        guard let url = URL(string: urlString) else {return}
-        contentMode = .scaleAspectFill
-        // on va aller charger l'img, like API
-        URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard
-                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                        let data = data, error == nil,
-                        let image = UIImage(data: data)
-                        else { return }
-                    DispatchQueue.main.async() {
-                        self.image = image
-                    }
-                }.resume()
-    }
-}
-
 class SerieDetailsViewController : UIViewController{
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var overview: UILabel!
@@ -106,10 +86,10 @@ class SerieDetailsViewController : UIViewController{
                                           }
                 }
                 self.nameSerie.reloadInputViews()
+        task.resume()
             }
             
-    
-    task.resume()
-    }
-    
+
 }
+    
+
