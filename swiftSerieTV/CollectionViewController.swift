@@ -34,16 +34,16 @@ extension UIImageView {
         }.resume()
     }
 }
-class CollectionViewController:  UIViewController ,UICollectionViewDataSource, UISearchBarDelegate{
+class CollectionViewController: UICollectionViewController, UISearchBarDelegate{
     
     //var searchBar: UISearchBar!
     var res: Result?
 
     var searchBar: UISearchBar!
     //@IBOutlet var searchBar: UISearchBar!
-    @IBOutlet weak var myCollection: UICollectionView!
     
-   // let searchController = UISearchController()
+    @IBOutlet var myCollection: UICollectionView!
+    // let searchController = UISearchController()
     
     var tabSeries : [Serie] = [];
     
@@ -57,7 +57,9 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
         //searchBar = UIStoryboard(name: "Main", bundle: nil).value(forKey: "searchbar") as! UISearchBar
         getSeries()
         myCollection.dataSource = self
-        searchBar.delegate = self
+    }
+    func updateView() {
+        myCollection.reloadData()
     }
     
   
@@ -132,17 +134,18 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
 
         }
     
-     func numberOfSections(in collectionView: UICollectionView) -> Int {
+     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     // obligatoire à redéfinir
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filteredSeries.count
     }
     
     // peupler les cellules de tables
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+         print(tabSeries[indexPath.row])
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviesCell", for: indexPath) as! MyCollectionViewCell
         cell.name?.text = filteredSeries[indexPath.row].name
         cell.imageView?.dl(from: "https://image.tmdb.org/t/p/w500"+filteredSeries[indexPath.row].backdrop_path!)
@@ -157,7 +160,8 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
     }*/
     
     // gérer le click sur une cellule
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         print("je suis selectionné")
         var serieView : SerieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "serieView")
         serieView.serie = filteredSeries[indexPath.row]
         // show(studentView, sender: self)
@@ -165,7 +169,7 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
         
     }
     
-     func collectionView(
+    override func collectionView(
       _ collectionView: UICollectionView,
       viewForSupplementaryElementOfKind kind: String,
       at indexPath: IndexPath
@@ -185,8 +189,8 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
 
         // 4
           self.searchBar = typedHeaderView.searchBar
-          searchBar.delegate = self
-        return typedHeaderView
+          self.searchBar.delegate = self
+          return typedHeaderView
       default:
         // 5
         assert(false, "Invalid element type")
@@ -194,6 +198,7 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
     }
     
     func getSeries(){
+        print("getSerie")
         var jsonDataString: String = ""
         let url = URL(string: "https://api.themoviedb.org/3/tv/airing_today?api_key=d3816181c54e220d8bc669bdc4503396&language=fr-FR")!
         
@@ -216,14 +221,17 @@ class CollectionViewController:  UIViewController ,UICollectionViewDataSource, U
             let pagination: Pagination = try! JSONDecoder().decode(Pagination.self, from: JsonData)
             self.resSerie = pagination.results
             DispatchQueue.main.async() {
+                
                 self.res = try! JSONDecoder().decode(Result.self, from: data)
                 var res: [Serie] = []
                 for result in self.res!.results! {
-                    self.tabSeries.append(Serie(backdrop_path: result.backdrop_path, first_air_date: result.first_air_date, id: result.id, genre_ids: result.genre_ids,  name: result.name, origin_country: result.origin_country, original_language: result.original_language, original_name: result.original_name, overview: result.overview,
+                    print(result)
+                                      self.tabSeries.append(Serie(backdrop_path: result.backdrop_path, first_air_date: result.first_air_date, id: result.id, genre_ids: result.genre_ids,  name: result.name, origin_country: result.origin_country, original_language: result.original_language, original_name: result.original_name, overview: result.overview,
                                                 popularity: result.popularity, poster_path: result.poster_path, vote_average: result.vote_average, vote_count: result.vote_count))
                 }
-                self.filteredSeries = res
-                self.collectionView.reloadData()
+                print("DispatechedQueue")
+                self.filteredSeries = self.tabSeries
+                self.myCollection.reloadData()
             }
         }
         task.resume()
